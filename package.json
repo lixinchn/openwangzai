@@ -1,0 +1,30 @@
+{
+  "name": "openwangzai",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "babel-node main.js",
+    "build": "babel src --out-lib lib",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lixinchn/openwangzai.git"
+  },
+  "author": "lixin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lixinchn/openwangzai/issues"
+  },
+  "homepage": "https://github.com/lixinchn/openwangzai#readme",
+  "devDependencies": {
+    "babel-cli": "^6.23.0",
+    "babel-core": "^6.23.1",
+    "babel-plugin-transform-es2015-destructuring": "^6.23.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.23.0",
+    "babel-plugin-transform-es2015-parameters": "^6.23.0",
+    "babel-plugin-transform-es2015-spread": "^6.22.0",
+    "babel-plugin-transform-strict-mode": "^6.22.0"
+  }
+}

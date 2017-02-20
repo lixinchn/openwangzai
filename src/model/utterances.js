@@ -1,6 +1,6 @@
 export default class Utterances {
     constructor(strUtterances) {
-        arrUtterances = strUtterances.split('\n');
+        let arrUtterances = strUtterances.split('\n');
         this.utterances = this.parseUtterances(arrUtterances);
     }
 

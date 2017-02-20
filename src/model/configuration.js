@@ -1,4 +1,4 @@
-import parseStringToEnum from '../util/model_util';
+import {parseStringToEnum} from '../util/model_util';
 
 
 export default class Configuration {
@@ -7,7 +7,7 @@ export default class Configuration {
     }
 
     parseEndpoint(strEndpoint) {
-        return parseStringToEnum(strEndpoint, Configuration.ENDPOINT);
+        return parseStringToEnum(strEndpoint.toUpperCase(), Configuration.ENDPOINT);
     }
 }
 
