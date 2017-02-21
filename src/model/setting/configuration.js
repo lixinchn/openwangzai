@@ -1,4 +1,4 @@
-import {parseStringToEnum} from '../util/model_util';
+import {parseStringToEnum} from '../../util/model_util';
 
 
 export default class Configuration {

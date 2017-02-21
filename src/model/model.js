@@ -1,6 +1,6 @@
-import Skill from './skill';
-import Interaction from './interaction';
-import Configuration from './configuration';
+import Skill from './setting/skill';
+import Interaction from './setting/interaction';
+import Configuration from './setting/configuration';
 
 
 export default class OpenWangZaiConfig {
