@@ -1,14 +1,16 @@
 export default class Utterances {
     constructor(strUtterances) {
-        let arrUtterances = strUtterances.split('\n');
-        this.utterances = this.parseUtterances(arrUtterances);
+        let arrUtterancesUnpured = strUtterances.split('\n');
+        this.m_arrUtterances = this.parseUtterances(arrUtterancesUnpured);
+        // console.log(this.utterances);
     }
 
-    parseUtterances(arrUtterances) {
+    parseUtterances(arrUtterancesUnpured) {
         // 例子: [intent]从搜狗查询{location}{date}的天气
-        return arrUtterances.filter(utterance => {
+        /*
+        let utterances = arrUtterances.filter(utterance => {
             if (!utterance)
-                return false;
+                return;
 
             let rightBracket = utterance.indexOf(']');
             let intent = utterance.substring(1, rightBracket);
@@ -18,5 +20,44 @@ export default class Utterances {
                 'realUtterance': realUtterance,
             };
         });
+        */
+
+        let arrUtterances = [];
+        for (let utterance of arrUtterancesUnpured) {
+            if (!utterance)
+                continue;
+
+            let rightBracket = utterance.indexOf(']');
+            let intent = utterance.substring(1, rightBracket);
+            let realUtterance = utterance.slice(rightBracket + 1);
+            // console.log(realUtterance);
+            let slotNames = this.parseSlotsName(realUtterance);
+            arrUtterances.push({
+                'intent': intent,
+                'realUtterance': realUtterance,
+                'reg': new RegExp(realUtterance.replace(/\{.*?\}/gi, '(.*)?')),
+                'slotNames': slotNames,
+            });
+        }
+        return arrUtterances;
+    }
+
+    parseSlotsName(realUtterance) {
+        let arrSlots = [];
+        let parseStatus = false;
+        let slot = '';
+
+        for (let char of realUtterance) {
+            if (char === '{') {
+                parseStatus = true;
+            } else if (char === '}' && parseStatus) {
+                parseStatus = false;
+                arrSlots.push(slot);
+                slot = '';
+            } else if (parseStatus) {
+                slot += char;
+            }
+        }
+        return arrSlots;
     }
 }
